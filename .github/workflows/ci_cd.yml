@@ -38,6 +38,7 @@ jobs:
       run: gitleaks detect source .
   test:
     runs-on: self-hosted
+    needs: Security-check
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -51,6 +52,7 @@ jobs:
 
   build_project_and_sonar_scan:
     runs-on: self-hosted
+    needs: test
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
